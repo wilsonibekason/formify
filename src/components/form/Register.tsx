@@ -200,13 +200,19 @@ const RegisterForm: React.FC = () => {
       doc.text(`Date: ${date_time}`, 10, 90);
       /// other information
       category === "podcast" &&
+        doc.text(`The Price for Podcast: ${formatCurrency(10000)}`, 10, 100);
+      category === "musical_video" &&
         doc.text(
-          `The Price for Musical Video: ${formatCurrency(10000)}`,
+          `The Price for Musical Video is: ${formatCurrency(20000)}`,
           10,
           100
         );
-      category === "musical_video" &&
-        doc.text(`The Price for Musical Video is: ${date_time}`, 10, 100);
+      category === "media_training" &&
+        doc.text(
+          `The Price for Media Training is: ${formatCurrency(17000)}`,
+          10,
+          100
+        );
       // Save PDF to Blob
       const pdfBlob = doc.output("blob");
 
