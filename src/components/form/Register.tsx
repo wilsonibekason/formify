@@ -48,18 +48,39 @@ const RegisterForm: React.FC = () => {
     date_time: new Date(),
   };
 
+  // const saveFormDataToLocalStorage = (formData: FormValues) => {
+  //   localStorage.setItem("formData", JSON.stringify(formData));
+  // };
+
+  // const clearFormDataFromLocalStorage = () => {
+  //   localStorage.removeItem("formData");
+  // };
+
+  // const loadFormDataFromLocalStorage = () => {
+  //   const savedFormData = localStorage.getItem("formData");
+  //   if (savedFormData) {
+  //     return JSON.parse(savedFormData);
+  //   }
+  //   return initialValues;
+  // };
   const saveFormDataToLocalStorage = (formData: FormValues) => {
-    localStorage.setItem("formData", JSON.stringify(formData));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("formData", JSON.stringify(formData));
+    }
   };
 
   const clearFormDataFromLocalStorage = () => {
-    localStorage.removeItem("formData");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("formData");
+    }
   };
 
   const loadFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem("formData");
-    if (savedFormData) {
-      return JSON.parse(savedFormData);
+    if (typeof window !== "undefined") {
+      const savedFormData = localStorage.getItem("formData");
+      if (savedFormData) {
+        return JSON.parse(savedFormData);
+      }
     }
     return initialValues;
   };
