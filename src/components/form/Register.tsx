@@ -35,6 +35,14 @@ const RegisterForm: React.FC = () => {
   const logoImg =
     "https://res.cloudinary.com/dwqantex4/image/upload/v1720286923/speedmedia_sehaoo.jpg";
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   const initialValues: FormValues = {
     email: "",
     name: "",
@@ -200,16 +208,16 @@ const RegisterForm: React.FC = () => {
       doc.text(`Date: ${date_time}`, 10, 90);
       /// other information
       category === "podcast" &&
-        doc.text(`The Price for Podcast: ${formatCurrency(10000)}`, 10, 100);
+        doc.text(`The Price for Podcast: ${formatCurrency(30000.0)}`, 10, 100);
       category === "musical_video" &&
         doc.text(
-          `The Price for Musical Video is: ${formatCurrency(20000)}`,
+          `The Price for Musical Video is: ${formatCurrency(30000.0)}`,
           10,
           100
         );
       category === "media_training" &&
         doc.text(
-          `The Price for Media Training is: ${formatCurrency(17000)}`,
+          `The Price for Media Training is: ${formatCurrency(50000.0)}`,
           10,
           100
         );
@@ -458,7 +466,7 @@ const RegisterForm: React.FC = () => {
               type="submit"
               onClick={() => saveFormDataToLocalStorage(values)}
               disabled={uploading}
-              className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+              className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-400"
             >
               {uploading ? "Uploading..." : "Submit"}
             </button>
@@ -471,22 +479,36 @@ const RegisterForm: React.FC = () => {
   return (
     <>
       <div>
-        <div className="bg-black w-full text-white p-3 uppercase">
-          <h1 className="text-xl sm:text-4xl font-bold text-center">
-            Event Registration Form
+        <div className="bg-gradient-to-r from-purple-600 to-blue-500 w-full text-white p-6 rounded-b-lg shadow-lg">
+          <h1 className="text-2xl sm:text-5xl font-bold text-center mb-2">
+            Program / Training Registration Form
           </h1>
+          <p className="text-center text-sm sm:text-lg font-light">
+            Join us for an enriching experience! Fill in the details below to
+            secure your spot in our upcoming programs and training sessions.
+          </p>
         </div>
 
         <section className="max-w-md sm:max-w-xl w-full mx-auto p-4 sm:p-8">
           {/* Image */}
-          <div className="flex justify-center items-center py-6 sm:py-10">
-            <Image
-              src={"/speedmedia.jpg"}
-              alt="speedmedia"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
+          <div className="flex flex-col items-center py-6 sm:py-10">
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 overflow-hidden rounded-full border-4 border-white shadow-lg">
+              <Image
+                src="/speedmedia.jpg"
+                alt="speedmedia"
+                width={160} // Adjust width and height as per your needs
+                height={160} // Adjust width and height as per your needs
+                className="rounded-full"
+              />
+            </div>
+            <p className="mt-4 text-lg sm:text-xl font-semibold text-center text-gray-800">
+              Welcome to <span className="text-blue-600">SpeedMedia</span>
+            </p>
+            <p className="text-center text-gray-600 mt-2 max-w-md">
+              We are delighted to have you here. Register for our exciting and
+              insightful programs and training sessions designed to empower and
+              educate.
+            </p>
           </div>
 
           {slotSummaryUrl ? (
@@ -497,6 +519,74 @@ const RegisterForm: React.FC = () => {
             FormikContents
           )}
         </section>
+        <footer className="bg-black text-white p-6 mt-8">
+          <div className="max-w-md sm:max-w-xl w-full mx-auto">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold mb-2">SpeedMedia</h2>
+              <p className="text-lg font-medium">
+                Program / Training Registration Form
+              </p>
+              <p className="text-sm font-light">
+                Welcome to SpeedMedia&#39;s training registration form. Please
+                fill in your details to register for our upcoming events and
+                training sessions.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-between items-center">
+              <div className="text-center sm:text-left mb-4 sm:mb-0">
+                <p className="text-lg font-semibold">
+                  CONTACT:
+                  <a
+                    href="tel:08066925006"
+                    className="hover:text-gray-400 ml-1"
+                  >
+                    08066925006
+                  </a>
+                  <span> / </span>
+                  <a
+                    href="tel:09081880505"
+                    className="hover:text-gray-400 ml-1"
+                  >
+                    09081880505
+                  </a>
+                </p>
+              </div>
+              <div className="flex space-x-4">
+                <a
+                  href="https://www.facebook.com/speedmediang"
+                  className="hover:text-gray-400"
+                >
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/speedmediaempire"
+                  className="hover:text-gray-400"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/speedlighthouse"
+                  className="hover:text-gray-400"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/speedmediastudio"
+                  className="hover:text-gray-400"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+
+            <div className="text-center mt-6">
+              <p className="text-sm font-light">
+                © 2024 SpeedMedia. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   );
