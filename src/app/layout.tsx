@@ -4,8 +4,8 @@ import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
 
 const meta = {
-  title: "SpeedMedia | Event Registration Form",
-  description: "SpeedMedia Event Registration Form",
+  title: "SpeedMedia | program / Training Registration Form",
+  description: "SpeedMedia Program / Training Registration Form",
   cardImage: "/speedmedia.jpg",
   robots: "follow, index",
   favicon: "/favicon.ico",
