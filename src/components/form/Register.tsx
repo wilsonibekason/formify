@@ -191,11 +191,11 @@ const RegisterForm: React.FC = () => {
       ///
 
       // Adding an image
-      // const imgWidth = 100;
-      // const imgHeight = 100;
-      // const x = 10;
-      // const y = 80;
-      // doc.addImage(logoImg, "JPEG", x, y, imgWidth, imgHeight);
+      const imgWidth = 20;
+      const imgHeight = 20;
+      const x = 10;
+      const y = 0;
+      doc.addImage(logoImg, "JPEG", x, y, imgWidth, imgHeight);
 
       doc.text(`Slot Summary for ${name}`, 10, 10);
       doc.text(`Email: ${email}`, 10, 20);
@@ -208,19 +208,11 @@ const RegisterForm: React.FC = () => {
       doc.text(`Date: ${date_time}`, 10, 90);
       /// other information
       category === "podcast" &&
-        doc.text(`The Price for Podcast: ${formatCurrency(30000.0)}`, 10, 100);
+        doc.text(`The Price for Podcast is ₦30,000.00`, 10, 100);
       category === "musical_video" &&
-        doc.text(
-          `The Price for Musical Video is: ${formatCurrency(30000.0)}`,
-          10,
-          100
-        );
+        doc.text(`The Price for Musical Video is ₦30,000.00`, 10, 100);
       category === "media_training" &&
-        doc.text(
-          `The Price for Media Training is: ${formatCurrency(50000.0)}`,
-          10,
-          100
-        );
+        doc.text(`The Price for Media Training is ₦50,000.00`, 10, 100);
       // Save PDF to Blob
       const pdfBlob = doc.output("blob");
 
