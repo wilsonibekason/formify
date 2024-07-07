@@ -11,6 +11,7 @@ import SuccessLayout from "./SuccessLayout";
 import DatePickers from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // Adjust the CSS import based on your date picker library
 import Image from "next/image";
+import { generatePDF } from "./generatePdf";
 
 interface FormValues {
   email: string;
@@ -191,33 +192,36 @@ const RegisterForm: React.FC = () => {
       ///
 
       // Adding an image
-      const imgWidth = 20;
-      const imgHeight = 20;
-      const x = 10;
-      const y = 150;
-      doc.addImage(logoImg, "JPEG", x, y, imgWidth, imgHeight);
+      // const imgWidth = 20;
+      // const imgHeight = 20;
+      // const x = 10;
+      // const y = 150;
+      // doc.addImage(logoImg, "JPEG", x, y, imgWidth, imgHeight);
 
-      doc.text(`Slot Summary for ${name}`, 10, 10);
-      doc.text(`Email: ${email}`, 10, 20);
-      doc.text(`Phone Number: ${phone_number}`, 10, 30);
-      doc.text(`Location: ${location}`, 10, 40);
-      doc.text(`Stage: ${stage}`, 10, 50);
-      doc.text(`Backups: ${backups}`, 10, 60);
-      doc.text(`Number of Backups: ${backups_num}`, 10, 70);
-      doc.text(`Category: ${category}`, 10, 80);
-      doc.text(`Date: ${date_time}`, 10, 90);
-      /// other information
-      category === "podcast" &&
-        doc.text(`The Price for Podcast is ₦30,000.00`, 10, 110);
-      category === "musical_video" &&
-        doc.text(`The Price for Musical Video is ₦30,000.00`, 10, 110);
-      category === "media_training" &&
-        doc.text(`The Price for Media Training is ₦50,000.00`, 10, 110);
-      // Save PDF to Blob
-      const pdfBlob = doc.output("blob");
+      // doc.text(`Slot Summary for ${name}`, 10, 10);
+      // doc.text(`Email: ${email}`, 10, 20);
+      // doc.text(`Phone Number: ${phone_number}`, 10, 30);
+      // doc.text(`Location: ${location}`, 10, 40);
+      // doc.text(`Stage: ${stage}`, 10, 50);
+      // doc.text(`Backups: ${backups}`, 10, 60);
+      // doc.text(`Number of Backups: ${backups_num}`, 10, 70);
+      // doc.text(`Category: ${category}`, 10, 80);
+      // doc.text(`Date: ${date_time}`, 10, 90);
+      // /// other information
+      // category === "podcast" &&
+      //   doc.text(`The Price for Podcast is ₦30,000.00`, 10, 110);
+      // category === "musical_video" &&
+      //   doc.text(`The Price for Musical Video is ₦30,000.00`, 10, 110);
+      // category === "media_training" &&
+      //   doc.text(`The Price for Media Training is ₦50,000.00`, 10, 110);
 
-      // Create URL for the PDF Blob
-      const pdf_url = URL.createObjectURL(pdfBlob);
+      // // Save PDF to Blob
+      // const pdfBlob = doc.output("blob");
+
+      // // Create URL for the PDF Blob
+      // const pdf_url = URL.createObjectURL(pdfBlob);
+
+      const pdf_url = generatePDF(values, logoImg);
       setSlotSummaryUrl(pdf_url);
 
       ///
