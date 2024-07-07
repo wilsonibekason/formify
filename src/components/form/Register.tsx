@@ -194,7 +194,7 @@ const RegisterForm: React.FC = () => {
       const imgWidth = 20;
       const imgHeight = 20;
       const x = 10;
-      const y = 0;
+      const y = 150;
       doc.addImage(logoImg, "JPEG", x, y, imgWidth, imgHeight);
 
       doc.text(`Slot Summary for ${name}`, 10, 10);
@@ -208,11 +208,11 @@ const RegisterForm: React.FC = () => {
       doc.text(`Date: ${date_time}`, 10, 90);
       /// other information
       category === "podcast" &&
-        doc.text(`The Price for Podcast is ₦30,000.00`, 10, 100);
+        doc.text(`The Price for Podcast is ₦30,000.00`, 10, 110);
       category === "musical_video" &&
-        doc.text(`The Price for Musical Video is ₦30,000.00`, 10, 100);
+        doc.text(`The Price for Musical Video is ₦30,000.00`, 10, 110);
       category === "media_training" &&
-        doc.text(`The Price for Media Training is ₦50,000.00`, 10, 100);
+        doc.text(`The Price for Media Training is ₦50,000.00`, 10, 110);
       // Save PDF to Blob
       const pdfBlob = doc.output("blob");
 
