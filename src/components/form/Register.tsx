@@ -12,6 +12,7 @@ import DatePickers from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // Adjust the CSS import based on your date picker library
 import Image from "next/image";
 import { generatePDF } from "./generatePdf";
+import { sendEmail } from "@/libs/mail/resend";
 
 interface FormValues {
   email: string;
@@ -107,7 +108,7 @@ const RegisterForm: React.FC = () => {
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Required"),
     name: Yup.string().required("Required"),
-    phone_number: Yup.string().matches(/^\d{10}$/, "Phone number is not valid"),
+    phone_number: Yup.string().matches(/^\d{11}$/, "Phone number is not valid"),
     location: Yup.string().required("Required"),
     stage: Yup.string().required("Required"),
     backups: Yup.string().required("Required"), // Validate boolean
@@ -245,6 +246,8 @@ const RegisterForm: React.FC = () => {
         ])
         .select();
 
+      sendEmail(email, name);
+
       // Handle errors
       if (error) {
         console.error("Error inserting data into Supabase:", error.message);
@@ -285,7 +288,11 @@ const RegisterForm: React.FC = () => {
                 type="email"
                 className="border-0 outline-none bg-slate-100 rounded-lg p-3 text-black"
               />
-              <ErrorMessage name="email" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="email"
+                className="text-red-600 text-xs"
+              />
             </div>
 
             <div className="flex flex-col">
@@ -300,7 +307,11 @@ const RegisterForm: React.FC = () => {
                 type="text"
                 className="border-0 outline-none bg-slate-100 rounded-lg p-3 text-black"
               />
-              <ErrorMessage name="name" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="name"
+                className="text-red-600 text-xs"
+              />
             </div>
 
             <div className="flex flex-col">
@@ -313,9 +324,11 @@ const RegisterForm: React.FC = () => {
               <Field
                 name="phone_number"
                 type="text"
+                placeholder="08131434511"
                 className="border-0 outline-none bg-slate-100 rounded-lg p-3 text-black"
               />
               <ErrorMessage
+                component={"span"}
                 name="phone_number"
                 className="text-red-600 text-xs"
               />
@@ -333,7 +346,11 @@ const RegisterForm: React.FC = () => {
                 type="text"
                 className="border-0 outline-none bg-slate-100 rounded-lg p-3 text-black"
               />
-              <ErrorMessage name="location" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="location"
+                className="text-red-600 text-xs"
+              />
             </div>
             <div className="flex flex-col">
               <label
@@ -352,7 +369,11 @@ const RegisterForm: React.FC = () => {
                 <option value="musical_video">Musical Video</option>
                 <option value="media_training">Media Training</option>
               </Field>
-              <ErrorMessage name="category" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="category"
+                className="text-red-600 text-xs"
+              />
             </div>
 
             {values.category !== "media_training" && (
@@ -378,8 +399,8 @@ const RegisterForm: React.FC = () => {
                   )}
                 </Field>
                 <ErrorMessage
+                  component={"span"}
                   name="date_time"
-                  component="div"
                   className="text-red-600 text-xs"
                 />
               </div>
@@ -397,7 +418,11 @@ const RegisterForm: React.FC = () => {
                 type="text"
                 className="border-0 outline-none bg-slate-100 rounded-lg p-3 text-black"
               />
-              <ErrorMessage name="stage" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="stage"
+                className="text-red-600 text-xs"
+              />
             </div>
 
             <div className="flex flex-col">
@@ -416,7 +441,11 @@ const RegisterForm: React.FC = () => {
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </Field>
-              <ErrorMessage name="backups" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="backups"
+                className="text-red-600 text-xs"
+              />
             </div>
 
             <div className="flex flex-col">
@@ -432,6 +461,7 @@ const RegisterForm: React.FC = () => {
                 className="border-0 outline-none bg-slate-100 rounded-lg p-3 text-black"
               />
               <ErrorMessage
+                component={"span"}
                 name="backups_num"
                 className="text-red-600 text-xs"
               />
@@ -455,7 +485,11 @@ const RegisterForm: React.FC = () => {
                   }
                 }}
               />
-              <ErrorMessage name="audio" className="text-red-600 text-xs" />
+              <ErrorMessage
+                component={"span"}
+                name="audio"
+                className="text-red-600 text-xs"
+              />
             </div>
 
             <button
